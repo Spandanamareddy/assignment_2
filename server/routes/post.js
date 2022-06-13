@@ -1,13 +1,12 @@
-// 1. importing the libraries
 const express = require("express");
-const Post = require('../models/post'); //accesses functions in post model file
+const Post = require('../models/post'); 
 const router = express.Router();
 
 // 2. create all routes to access database
 router
   .post('/create', async (req, res) => {
     try {
-      const post = await Post.newPost(req.body.username, req.body.content);
+      const post = await Post.newPost(req.body.UserId, req.body.PostId, req.body.content, req.body.timestamp);
       res.send({...post});
     } catch(error) {
       res.status(401).send({ message: error.message });
@@ -35,11 +34,11 @@ router
   .delete('/delete', async (req, res) => {
     try {
       await Post.deletePost(req.body.pid);
-      res.send({ success: "Post deleted" });
+      res.send({ success: "Post is deleted" });
     } catch(error) {
       res.status(401).send({ message: error.message });
     }
   })
 
-// 3. export router for use in index.js
+
 module.exports = router;
