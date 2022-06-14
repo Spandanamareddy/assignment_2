@@ -2,7 +2,7 @@ const express = require("express");
 const Post = require('../models/post'); 
 const router = express.Router();
 
-// 2. create all routes to access database
+
 router
   .post('/create', async (req, res) => {
     try {
